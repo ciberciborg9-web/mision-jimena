@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Aurora 24 | Noticias de Nueva Aurora</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef2f7;
+            color: #172033;
+        }
+
+
+        /* BARRA SUPERIOR */
+
+        .barra-superior {
+
+            background: #10182a;
+
+            color: white;
+
+            padding: 12px 0;
+
+        }
+
+        .barra-contenido {
+
+            width: 92%;
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+        }
+
+        .volver {
+
+            color: #b8c4dc;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+        }
+
+        .volver:hover {
+
+            color: #00c987;
+
+        }
+
+        .estado {
+
+            color: #00d995;
+
+            font-weight: bold;
+
+            font-size: 13px;
+
+        }
+
+
+        /* ENCABEZADO DEL PERIÓDICO */
+
+        .encabezado {
+
+            background: white;
+
+            border-bottom: 1px solid #dce3ed;
+
+            padding: 28px 0;
+
+        }
+
+        .logo {
+
+            text-align: center;
+
+        }
+
+        .logo h1 {
+
+            margin: 0;
+
+            font-size: 42px;
+
+            letter-spacing: -1px;
+
+            color: #14203a;
+
+        }
+
+        .logo span {
+
+            color: #e64d5f;
+
+        }
+
+        .logo p {
+
+            margin: 8px 0 0;
+
+            color: #72809a;
+
+            font-size: 14px;
+
+        }
+
+
+        /* CONTENEDOR */
+
+        .contenedor {
+
+            width: 92%;
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            padding: 30px 0 60px;
+
+        }
+
+
+        /* ALERTA */
+
+        .alerta-investigacion {
+
+            background: #e8f8f1;
+
+            border-left: 5px solid #00b979;
+
+            padding: 20px;
+
+            border-radius: 8px;
+
+            margin-bottom: 30px;
+
+        }
+
+        .alerta-investigacion strong {
+
+            color: #087e56;
+
+        }
+
+
+        /* BUSCADOR */
+
+        .buscador {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 30px;
+
+        }
+
+        .buscador input {
+
+            flex: 1;
+
+            padding: 15px;
+
+            border: 1px solid #ccd5e2;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+        }
+
+        .buscador input:focus {
+
+            outline: none;
+
+            border-color: #00b979;
+
+        }
+
+        .buscador button {
+
+            border: none;
+
+            padding: 15px 25px;
+
+            background: #14203a;
+
+            color: white;
+
+            font-weight: bold;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+        }
+
+        .buscador button:hover {
+
+            background: #00a96e;
+
+        }
+
+
+        /* RESULTADO */
+
+        #resultadoBusqueda {
+
+            display: none;
+
+            background: #14203a;
+
+            color: white;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        /* NOTICIAS */
+
+        .titulo-seccion {
+
+            font-size: 22px;
+
+            margin-bottom: 20px;
+
+            color: #14203a;
+
+            border-bottom: 2px solid #e64d5f;
+
+            padding-bottom: 10px;
+
+        }
+
+        .noticia {
+
+            background: white;
+
+            border-radius: 12px;
+
+            margin-bottom: 20px;
+
+            overflow: hidden;
+
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+
+            border: 1px solid #e4e9f0;
+
+        }
+
+        .noticia-contenido {
+
+            padding: 25px;
+
+        }
+
+        .categoria {
+
+            color: #e64d5f;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+        }
+
+        .noticia h2 {
+
+            margin: 10px 0;
+
+            font-size: 24px;
+
+            color: #14203a;
+
+        }
+
+        .fecha {
+
+            color: #8793a8;
+
+            font-size: 13px;
+
+            margin-bottom: 15px;
+
+        }
+
+        .noticia p {
+
+            color: #526078;
+
+            line-height: 1.7;
+
+        }
+
+        .dato-importante {
+
+            margin-top: 18px;
+
+            padding: 15px;
+
+            background: #f2f7fb;
+
+            border-left: 4px solid #00b979;
+
+            border-radius: 5px;
+
+        }
+
+        .dato-importante strong {
+
+            color: #087e56;
+
+        }
+
+
+        /* PISTA ESPECIAL */
+
+        .pista-especial {
+
+            background: #fff9e7;
+
+            border: 1px solid #f0d68a;
+
+        }
+
+
+        /* BOTÓN */
+
+        .boton-siguiente {
+
+            display: block;
+
+            text-align: center;
+
+            background: #00b979;
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 18px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+            margin-top: 40px;
+
+            letter-spacing: 1px;
+
+        }
+
+        .boton-siguiente:hover {
+
+            background: #009c66;
+
+        }
+
+
+        /* PIE */
+
+        .pie {
+
+            text-align: center;
+
+            color: #8a96a9;
+
+            margin-top: 30px;
+
+            font-size: 13px;
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .barra-contenido {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+            }
+
+            .logo h1 {
+
+                font-size: 34px;
+
+            }
+
+            .buscador {
+
+                flex-direction: column;
+
+            }
+
+            .noticia h2 {
+
+                font-size: 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BARRA SUPERIOR -->
+
+    <div class="barra-superior">
+
+        <div class="barra-contenido">
+
+            <a href="nexo.html" class="volver">
+
+                ← VOLVER A NEXO
+
+            </a>
+
+
+            <div class="estado">
+
+                ● FUENTE ABIERTA DISPONIBLE
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ENCABEZADO -->
+
+    <header class="encabezado">
+
+        <div class="logo">
+
+            <h1>
+
+                AURORA <span>24</span>
+
+            </h1>
+
+            <p>
+
+                Noticias de Nueva Aurora
+
+            </p>
+
+        </div>
+
+    </header>
+
+
+
+    <main class="contenedor">
+
+
+        <!-- ALERTA PARA JIMENA -->
+
+        <div class="alerta-investigacion">
+
+            <strong>
+
+                🔎 MISIÓN DE LA AGENTE JIMENA
+
+            </strong>
+
+            <br><br>
+
+            Consulta esta fuente para verificar la información
+            encontrada en NEXO.
+
+            Recuerda: una investigadora debe comparar diferentes
+            fuentes antes de llegar a una conclusión.
+
+        </div>
+
+
+
+        <!-- BUSCADOR -->
+
+        <div class="buscador">
+
+            <input
+
+                type="text"
+
+                id="busqueda"
+
+                placeholder="Buscar noticias, lugares o palabras..."
+
+            >
+
+            <button onclick="buscar()">
+
+                BUSCAR
+
+            </button>
+
+        </div>
+
+
+        <div id="resultadoBusqueda"></div>
+
+
+
+        <div class="titulo-seccion">
+
+            ÚLTIMAS NOTICIAS
+
+        </div>
+
+
+
+        <!-- NOTICIA 1 - LA MÁS IMPORTANTE -->
+
+        <article
+
+            class="noticia"
+
+            data-busqueda="mirador cometa 18:30 noche especial observacion cielo aurora astronomia libreta alex"
+
+        >
+
+            <div class="noticia-contenido">
+
+
+                <div class="categoria">
+
+                    CIENCIA Y COMUNIDAD
+
+                </div>
+
+
+                <h2>
+
+                    El Mirador del Cometa recibirá una
+                    jornada especial de observación nocturna
+
+                </h2>
+
+
+                <div class="fecha">
+
+                    Nueva Aurora • Información pública
+
+                </div>
+
+
+                <p>
+
+                    Este viernes se realizará una pequeña jornada
+                    comunitaria de observación del cielo en el
+                    <strong>Mirador del Cometa</strong>.
+
+                </p>
+
+
+                <p>
+
+                    Las actividades comenzarán oficialmente a las
+                    <strong>18:30 horas</strong> y estarán relacionadas
+                    con la observación nocturna y el estudio del cielo.
+
+                </p>
+
+
+                <div class="dato-importante">
+
+                    <strong>📍 UBICACIÓN:</strong>
+
+                    Mirador del Cometa
+
+                    <br><br>
+
+                    <strong>⏰ HORARIO:</strong>
+
+                    18:30 horas
+
+                </div>
+
+
+                <p>
+
+                    Entre los participantes se espera la presencia de
+                    integrantes de la comunidad local interesados en
+                    registrar observaciones y realizar anotaciones.
+
+                </p>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- NOTICIA 2 -->
+
+        <article
+
+            class="noticia"
+
+            data-busqueda="parque central evento familiar 17:00 deportes comunidad"
+
+        >
+
+            <div class="noticia-contenido">
+
+
+                <div class="categoria">
+
+                    COMUNIDAD
+
+                </div>
+
+
+                <h2>
+
+                    Actividades familiares en el Parque Central
+
+                </h2>
+
+
+                <div class="fecha">
+
+                    Nueva Aurora • Información pública
+
+                </div>
+
+
+                <p>
+
+                    El Parque Central realizará diversas actividades
+                    familiares durante el fin de semana.
+
+                </p>
+
+
+                <p>
+
+                    Los primeros eventos comenzarán a las
+                    <strong>17:00 horas</strong>.
+
+                </p>
+
+
+                <div class="dato-importante">
+
+                    <strong>📌 IMPORTANTE:</strong>
+
+                    Esta actividad no está relacionada con la jornada
+                    de observación nocturna.
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- NOTICIA 3 -->
+
+        <article
+
+            class="noticia"
+
+            data-busqueda="aurora significado amanecer luz cielo madrugada nuevo dia"
+
+        >
+
+            <div class="noticia-contenido">
+
+
+                <div class="categoria">
+
+                    CURIOSIDADES
+
+                </div>
+
+
+                <h2>
+
+                    ¿Por qué la palabra “Aurora”
+                    está relacionada con el amanecer?
+
+                </h2>
+
+
+                <div class="fecha">
+
+                    Nueva Aurora • Archivo cultural
+
+                </div>
+
+
+                <p>
+
+                    La palabra <strong>Aurora</strong> se utiliza
+                    tradicionalmente para referirse a la primera luz
+                    que aparece antes o durante el amanecer.
+
+                </p>
+
+
+                <div class="dato-importante pista-especial">
+
+                    <strong>🌅 PISTA PARA INVESTIGADORES:</strong>
+
+                    Aurora representa el comienzo de un nuevo día.
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- NOTICIA 4 -->
+
+        <article
+
+            class="noticia"
+
+            data-busqueda="escuela libreta estudiantes tarea educacion"
+
+        >
+
+            <div class="noticia-contenido">
+
+
+                <div class="categoria">
+
+                    EDUCACIÓN
+
+                </div>
+
+
+                <h2>
+
+                    Estudiantes reciben nuevas libretas
+                    para el inicio del ciclo escolar
+
+                </h2>
+
+
+                <div class="fecha">
+
+                    Nueva Aurora • Información pública
+
+                </div>
+
+
+                <p>
+
+                    Diversas escuelas de Nueva Aurora realizaron
+                    actividades para entregar materiales educativos.
+
+                </p>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- SIGUIENTE PASO -->
+
+        <a
+
+            href="analisis.html"
+
+            class="boton-siguiente"
+
+        >
+
+            🧠 IR AL CENTRO DE ANÁLISIS
+
+        </a>
+
+
+
+        <div class="pie">
+
+            AURORA 24 • FUENTE ABIERTA FICTICIA • CASO 001
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+
+        function buscar() {
+
+
+            const texto = document
+
+                .getElementById("busqueda")
+
+                .value
+
+                .toLowerCase()
+
+                .trim();
+
+
+            const noticias = document
+
+                .querySelectorAll(".noticia");
+
+
+            const resultado = document
+
+                .getElementById("resultadoBusqueda");
+
+
+            let encontrados = 0;
+
+
+            noticias.forEach(function(noticia) {
+
+
+                const contenido = noticia
+
+                    .getAttribute("data-busqueda")
+
+                    .toLowerCase();
+
+
+                if (contenido.includes(texto) || texto === "") {
+
+
+                    noticia.style.display = "block";
+
+                    encontrados++;
+
+
+                } else {
+
+
+                    noticia.style.display = "none";
+
+
+                }
+
+
+            });
+
+
+            if (texto === "") {
+
+
+                resultado.style.display = "none";
+
+                return;
+
+
+            }
+
+
+            resultado.style.display = "block";
+
+
+            resultado.innerHTML =
+
+                "🔎 Se encontraron "
+
+                +
+
+                encontrados
+
+                +
+
+                " noticia(s) relacionada(s) con: "
+
+                +
+
+                "<strong>"
+
+                +
+
+                texto
+
+                +
+
+                "</strong>";
+
+
+        }
+
+
+        document
+
+            .getElementById("busqueda")
+
+            .addEventListener(
+
+                "keypress",
+
+                function(event) {
+
+
+                    if (event.key === "Enter") {
+
+
+                        buscar();
+
+
+                    }
+
+
+                }
+
+            );
+
+
+    </script>
+
+
+</body>
+
+</html>
