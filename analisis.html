@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Centro de Análisis | Caso 001</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #1a2545 0%,
+                    #0b1020 45%,
+                    #050812 100%
+                );
+
+            color: white;
+
+        }
+
+
+        /* BARRA SUPERIOR */
+
+        .barra-superior {
+
+            background: rgba(10, 16, 32, 0.95);
+
+            border-bottom:
+                1px solid rgba(0, 229, 160, 0.20);
+
+            padding: 15px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 10;
+
+        }
+
+
+        .barra-contenido {
+
+            width: 92%;
+
+            max-width: 900px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+        .volver {
+
+            color: #aab7d4;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+        }
+
+
+        .volver:hover {
+
+            color: #00e5a0;
+
+        }
+
+
+        .estado {
+
+            color: #00e5a0;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        /* CONTENEDOR */
+
+        .contenedor {
+
+            width: 92%;
+
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 35px 0 60px;
+
+        }
+
+
+        /* ENCABEZADO */
+
+        .encabezado {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .encabezado .nivel {
+
+            color: #00e5a0;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+        }
+
+
+        h1 {
+
+            font-size: 38px;
+
+            margin: 15px 0 10px;
+
+        }
+
+
+        .subtitulo {
+
+            color: #aab7d4;
+
+            font-size: 18px;
+
+        }
+
+
+        .linea {
+
+            width: 100px;
+
+            height: 3px;
+
+            background: #00e5a0;
+
+            margin: 25px auto;
+
+        }
+
+
+        /* PANEL DE INSTRUCCIONES */
+
+        .instrucciones {
+
+            background:
+                rgba(0, 229, 160, 0.06);
+
+            border:
+                1px solid rgba(0, 229, 160, 0.20);
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            margin-bottom: 30px;
+
+            line-height: 1.7;
+
+            color: #dce5f7;
+
+        }
+
+
+        /* PREGUNTAS */
+
+        .pregunta {
+
+            background: #121b30;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .pregunta h2 {
+
+            margin-top: 0;
+
+            font-size: 20px;
+
+            color: white;
+
+        }
+
+
+        .numero {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            width: 32px;
+
+            height: 32px;
+
+            border-radius: 50%;
+
+            background: #00c987;
+
+            color: #071018;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            margin-right: 10px;
+
+        }
+
+
+        /* OPCIONES */
+
+        .opciones {
+
+            display: grid;
+
+            gap: 12px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .opcion {
+
+            background: #0d1528;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.10);
+
+            color: white;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            text-align: left;
+
+            font-size: 16px;
+
+            transition: 0.2s;
+
+        }
+
+
+        .opcion:hover {
+
+            border-color: #00e5a0;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        .opcion.correcta {
+
+            background:
+                rgba(0, 229, 160, 0.15);
+
+            border-color: #00e5a0;
+
+        }
+
+
+        .opcion.incorrecta {
+
+            background:
+                rgba(255, 80, 80, 0.10);
+
+            border-color: #ff6666;
+
+        }
+
+
+        /* MENSAJES */
+
+        .mensaje {
+
+            display: none;
+
+            margin-top: 18px;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .mensaje.correcto {
+
+            background:
+                rgba(0, 229, 160, 0.10);
+
+            border-left:
+                4px solid #00e5a0;
+
+            color: #bdf6df;
+
+        }
+
+
+        .mensaje.error {
+
+            background:
+                rgba(255, 90, 90, 0.10);
+
+            border-left:
+                4px solid #ff7777;
+
+            color: #ffc0c0;
+
+        }
+
+
+        /* PROGRESO */
+
+        .progreso {
+
+            background: #121b30;
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            margin: 35px 0;
+
+        }
+
+
+        .progreso-texto {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+
+            color: #b6c4df;
+
+        }
+
+
+        .barra-progreso {
+
+            height: 12px;
+
+            background: #08101f;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+
+        .barra-interna {
+
+            height: 100%;
+
+            width: 0%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00b979,
+                    #00e5a0
+                );
+
+            transition: 0.5s;
+
+        }
+
+
+        /* BOTÓN BLOQUEADO */
+
+        .boton-final {
+
+            display: block;
+
+            text-align: center;
+
+            padding: 18px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            background: #2b3447;
+
+            color: #8491aa;
+
+            pointer-events: none;
+
+            transition: 0.3s;
+
+        }
+
+
+        .boton-final.desbloqueado {
+
+            background: #00c987;
+
+            color: #071018;
+
+            pointer-events: auto;
+
+        }
+
+
+        .boton-final.desbloqueado:hover {
+
+            background: #00e5a0;
+
+            transform: scale(1.02);
+
+        }
+
+
+        /* PIE */
+
+        .pie {
+
+            text-align: center;
+
+            margin-top: 35px;
+
+            color: #697793;
+
+            font-size: 13px;
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            h1 {
+
+                font-size: 30px;
+
+            }
+
+
+            .barra-contenido {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 8px;
+
+            }
+
+
+            .pregunta {
+
+                padding: 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BARRA SUPERIOR -->
+
+    <div class="barra-superior">
+
+        <div class="barra-contenido">
+
+            <a
+                href="aurora24.html"
+                class="volver"
+            >
+
+                ← AURORA 24
+
+            </a>
+
+
+            <div class="estado">
+
+                ● CENTRO DE ANÁLISIS
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <main class="contenedor">
+
+
+        <!-- ENCABEZADO -->
+
+        <section class="encabezado">
+
+            <div class="nivel">
+
+                🧠 ANÁLISIS DE INFORMACIÓN
+
+            </div>
+
+
+            <h1>
+
+                CENTRO DE ANÁLISIS
+
+            </h1>
+
+
+            <div class="subtitulo">
+
+                Agente Jimena, analiza las evidencias
+                antes de emitir una conclusión.
+
+            </div>
+
+
+            <div class="linea"></div>
+
+        </section>
+
+
+
+        <!-- INSTRUCCIONES -->
+
+        <section class="instrucciones">
+
+            <strong>
+                📋 INSTRUCCIÓN DEL CENTRO DE MANDO
+            </strong>
+
+            <br><br>
+
+            Has revisado información disponible en diferentes
+            fuentes abiertas.
+
+            <br><br>
+
+            Ahora debes relacionar las pistas y seleccionar
+            únicamente la información que pueda ser sustentada
+            por el contexto de la investigación.
+
+            <br><br>
+
+            <strong>
+                No tengas miedo de equivocarte.
+            </strong>
+
+            Cada respuesta incorrecta te dará una nueva
+            oportunidad para analizar las pistas.
+
+        </section>
+
+
+
+        <!-- PREGUNTA 1 -->
+
+        <section class="pregunta">
+
+            <h2>
+
+                <span class="numero">
+
+                    1
+
+                </span>
+
+                ¿Qué usuario parece estar relacionado
+                directamente con el caso?
+
+            </h2>
+
+
+            <div class="opciones">
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'usuario',
+                        false,
+                        'Revisa qué perfil publicó información relacionada con una libreta, una noche especial y una hora específica.'
+                    )"
+                >
+
+                    @astro_aleatorio
+
+                </button>
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'usuario',
+                        true,
+                        '¡Correcto! Alex R. publicó varias pistas relacionadas entre sí y puede vincularse con el evento.'
+                    )"
+                >
+
+                    @cometa_azul
+
+                </button>
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'usuario',
+                        false,
+                        'Luna Norte aportó información sobre una posible ubicación, pero revisa quién está relacionado con varias pistas del caso.'
+                    )"
+                >
+
+                    @luna_norte
+
+                </button>
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'usuario',
+                        false,
+                        'Este perfil compartió una publicación sobre el significado de Aurora, pero no parece ser el perfil central del evento.'
+                    )"
+                >
+
+                    @marta_cielo
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="mensaje-usuario"
+                class="mensaje"
+            ></div>
+
+        </section>
+
+
+
+        <!-- PREGUNTA 2 -->
+
+        <section class="pregunta">
+
+            <h2>
+
+                <span class="numero">
+
+                    2
+
+                </span>
+
+                ¿Cuál es el lugar relacionado con
+                la actividad investigada?
+
+            </h2>
+
+
+            <div class="opciones">
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'lugar',
+                        false,
+                        'El Parque Central tiene un evento a las 17:00, pero pertenece a otra actividad. Revisa la información relacionada con la observación nocturna.'
+                    )"
+                >
+
+                    Parque Central
+
+                </button>
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'lugar',
+                        true,
+                        '¡Correcto! La información de NEXO y Aurora 24 coincide en este lugar.'
+                    )"
+                >
+
+                    Mirador del Cometa
+
+                </button>
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'lugar',
+                        false,
+                        'Esa palabra aparece en la investigación, pero no es el nombre de la ubicación.'
+                    )"
+                >
+
+                    Nueva Aurora
+
+                </button>
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'lugar',
+                        false,
+                        'La libreta es una pista mencionada por un usuario, pero no es el lugar del evento.'
+                    )"
+                >
+
+                    La Libreta Azul
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="mensaje-lugar"
+                class="mensaje"
+            ></div>
+
+        </section>
+
+
+
+        <!-- PREGUNTA 3 -->
+
+        <section class="pregunta">
+
+            <h2>
+
+                <span class="numero">
+
+                    3
+
+                </span>
+
+                ¿A qué hora comenzará la actividad
+                relacionada con el caso?
+
+            </h2>
+
+
+            <div class="opciones">
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'hora',
+                        false,
+                        'La hora 17:00 corresponde a una actividad diferente. Verifica qué hora coincide con el evento del Mirador del Cometa.'
+                    )"
+                >
+
+                    17:00 horas
+
+                </button>
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'hora',
+                        true,
+                        '¡Correcto! Esta hora aparece en una publicación relacionada y también fue confirmada por otra fuente.'
+                    )"
+                >
+
+                    18:30 horas
+
+                </button>
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'hora',
+                        false,
+                        'La información encontrada indica que el evento comenzará antes de que la noche esté avanzada.'
+                    )"
+                >
+
+                    20:00 horas
+
+                </button>
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'hora',
+                        false,
+                        'La palabra Aurora está relacionada con la luz del amanecer, pero no representa la hora de esta actividad.'
+                    )"
+                >
+
+                    06:00 horas
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="mensaje-hora"
+                class="mensaje"
+            ></div>
+
+        </section>
+
+
+
+        <!-- PREGUNTA 4 -->
+
+        <section class="pregunta">
+
+            <h2>
+
+                <span class="numero">
+
+                    4
+
+                </span>
+
+                En el contexto de la investigación,
+                ¿qué significa la palabra “Aurora”?
+
+            </h2>
+
+
+            <div class="opciones">
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'aurora',
+                        false,
+                        'La Aurora no es una persona dentro del caso. Busca el significado explicado en la fuente Aurora 24.'
+                    )"
+                >
+
+                    El nombre de una persona
+
+                </button>
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'aurora',
+                        false,
+                        'La palabra aparece relacionada con la luz y el comienzo de un nuevo día.'
+                    )"
+                >
+
+                    Una constelación
+
+                </button>
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'aurora',
+                        true,
+                        '¡Excelente! Aurora representa la primera luz y el comienzo de un nuevo día.'
+                    )"
+                >
+
+                    La primera luz que anuncia
+                    el comienzo de un nuevo día
+
+                </button>
+
+
+                <button
+                    class="opcion"
+                    onclick="responder(
+                        this,
+                        'aurora',
+                        false,
+                        'La palabra no corresponde al nombre de una ubicación. Revisa la nota cultural.'
+                    )"
+                >
+
+                    El nombre del parque
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="mensaje-aurora"
+                class="mensaje"
+            ></div>
+
+        </section>
+
+
+
+        <!-- PROGRESO -->
+
+        <section class="progreso">
+
+            <div class="progreso-texto">
+
+                <span>
+                    PROGRESO DEL ANÁLISIS
+                </span>
+
+                <strong id="contador">
+
+                    0 / 4
+
+                </strong>
+
+            </div>
+
+
+            <div class="barra-progreso">
+
+                <div
+                    id="barra"
+                    class="barra-interna"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- BOTÓN FINAL -->
+
+        <a
+            id="botonFinal"
+            href="informe.html"
+            class="boton-final"
+        >
+
+            🔒 INFORME FINAL BLOQUEADO
+
+        </a>
+
+
+        <div class="pie">
+
+            CENTRO DE MANDO • CASO 001 • ENTRENAMIENTO
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+
+        const respuestasCorrectas = {
+
+            usuario: false,
+
+            lugar: false,
+
+            hora: false,
+
+            aurora: false
+
+        };
+
+
+        function responder(
+            boton,
+            pregunta,
+            correcta,
+            texto
+        ) {
+
+
+            const mensaje = document
+                .getElementById(
+                    "mensaje-" + pregunta
+                );
+
+
+            const botones = boton
+                .parentElement
+                .querySelectorAll(".opcion");
+
+
+            botones.forEach(function(opcion) {
+
+                opcion.classList.remove(
+                    "correcta",
+                    "incorrecta"
+                );
+
+            });
+
+
+            if (correcta) {
+
+
+                boton.classList.add(
+                    "correcta"
+                );
+
+
+                mensaje.className =
+                    "mensaje correcto";
+
+
+                mensaje.innerHTML =
+                    "✅ "
+                    +
+                    texto;
+
+
+                respuestasCorrectas[pregunta] =
+                    true;
+
+
+            } else {
+
+
+                boton.classList.add(
+                    "incorrecta"
+                );
+
+
+                mensaje.className =
+                    "mensaje error";
+
+
+                mensaje.innerHTML =
+                    "💡 "
+                    +
+                    texto;
+
+
+            }
+
+
+            mensaje.style.display =
+                "block";
+
+
+            actualizarProgreso();
+
+
+        }
+
+
+        function actualizarProgreso() {
+
+
+            let total = 0;
+
+
+            Object.values(
+                respuestasCorrectas
+            ).forEach(function(valor) {
+
+
+                if (valor) {
+
+                    total++;
+
+                }
+
+
+            });
