@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NEXO | Fuentes Abiertas</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0b1020;
+            color: white;
+        }
+
+        /* BARRA SUPERIOR */
+
+        .barra-superior {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: #111a2e;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 15px;
+        }
+
+        .barra-contenido {
+            width: 92%;
+            max-width: 950px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00e5a0;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .volver {
+            color: #aab7d4;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .volver:hover {
+            color: #00e5a0;
+        }
+
+
+        /* CONTENEDOR */
+
+        .contenedor {
+            width: 92%;
+            max-width: 950px;
+            margin: auto;
+            padding: 30px 0 60px;
+        }
+
+
+        /* ENCABEZADO */
+
+        .bienvenida {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,229,160,0.12),
+                    rgba(38,69,150,0.20)
+                );
+
+            border: 1px solid rgba(0,229,160,0.18);
+            border-radius: 18px;
+
+            padding: 30px;
+
+            margin-bottom: 25px;
+        }
+
+        .bienvenida h1 {
+            margin: 0 0 10px;
+            font-size: 32px;
+        }
+
+        .bienvenida p {
+            color: #aab7d4;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+
+        /* BUSCADOR */
+
+        .buscador {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .buscador input {
+            flex: 1;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.15);
+
+            background: #121b30;
+            color: white;
+
+            font-size: 16px;
+        }
+
+        .buscador input:focus {
+            outline: none;
+            border-color: #00e5a0;
+        }
+
+        .buscador button {
+            padding: 15px 25px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #00c987;
+            color: #071018;
+
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .buscador button:hover {
+            background: #00e5a0;
+        }
+
+
+        /* RESULTADO DE BÚSQUEDA */
+
+        .resultado-busqueda {
+            display: none;
+
+            margin: 25px 0;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            background: rgba(0,229,160,0.08);
+
+            border-left: 4px solid #00e5a0;
+
+            color: #bfeedd;
+        }
+
+
+        /* PUBLICACIONES */
+
+        .titulo-seccion {
+            margin: 30px 0 20px;
+            color: #00e5a0;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        .publicacion {
+
+            background: #121b30;
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 16px;
+
+            padding: 22px;
+
+            margin-bottom: 18px;
+
+            transition: 0.3s;
+        }
+
+        .publicacion:hover {
+            border-color: rgba(0,229,160,0.35);
+        }
+
+
+        /* PERFIL */
+
+        .perfil {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 18px;
+        }
+
+        .avatar {
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 22px;
+
+            background: linear-gradient(
+                135deg,
+                #00c987,
+                #3156a3
+            );
+        }
+
+        .nombre {
+            font-weight: bold;
+        }
+
+        .usuario {
+            color: #8da0c7;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+
+        /* CONTENIDO */
+
+        .contenido {
+
+            font-size: 17px;
+
+            line-height: 1.6;
+
+            color: #e7ecf7;
+        }
+
+        .hashtag {
+            color: #00e5a0;
+        }
+
+
+        /* ESTADO DE INFORMACIÓN */
+
+        .estado {
+
+            margin-top: 18px;
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            display: inline-block;
+        }
+
+        .pendiente {
+            background: rgba(255,193,7,0.10);
+            color: #ffd45a;
+            border: 1px solid rgba(255,193,7,0.25);
+        }
+
+        .alerta {
+            background: rgba(255,90,90,0.10);
+            color: #ff9b9b;
+            border: 1px solid rgba(255,90,90,0.25);
+        }
+
+
+        /* BOTÓN DE SIGUIENTE */
+
+        .boton-siguiente {
+
+            display: block;
+
+            text-align: center;
+
+            margin-top: 40px;
+
+            padding: 17px;
+
+            background: #00c987;
+
+            color: #071018;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            border-radius: 10px;
+
+            letter-spacing: 1px;
+        }
+
+        .boton-siguiente:hover {
+            background: #00e5a0;
+        }
+
+
+        /* MENSAJE SIN RESULTADOS */
+
+        .sin-resultados {
+
+            display: none;
+
+            background: #121b30;
+
+            border-radius: 12px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            color: #aab7d4;
+        }
+
+
+        /* PIE */
+
+        .pie {
+
+            text-align: center;
+
+            margin-top: 35px;
+
+            color: #687793;
+
+            font-size: 13px;
+        }
+
+
+        /* CELULARES */
+
+        @media (max-width: 600px) {
+
+            .barra-contenido {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .buscador {
+                flex-direction: column;
+            }
+
+            .buscador button {
+                width: 100%;
+            }
+
+            .bienvenida h1 {
+                font-size: 26px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BARRA SUPERIOR -->
+
+    <div class="barra-superior">
+
+        <div class="barra-contenido">
+
+            <a href="expediente.html" class="volver">
+                ← EXPEDIENTE
+            </a>
+
+            <div class="logo">
+                N<span>EXO</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="contenedor">
+
+
+        <!-- BIENVENIDA -->
+
+        <section class="bienvenida">
+
+            <h1>
+                🔎 NEXO
+            </h1>
+
+            <p>
+                Conectando personas e información.
+            </p>
+
+            <p style="margin-top: 10px;">
+                Utiliza el buscador para explorar publicaciones
+                disponibles en fuentes abiertas.
+            </p>
+
+
+            <!-- BUSCADOR -->
+
+            <div class="buscador">
+
+                <input
+                    type="text"
+                    id="busqueda"
+                    placeholder="Buscar personas, lugares o palabras..."
+                >
+
+                <button onclick="buscar()">
+                    BUSCAR
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESULTADO -->
+
+        <div
+            id="resultadoBusqueda"
+            class="resultado-busqueda"
+        ></div>
+
+
+        <!-- PUBLICACIONES -->
+
+        <div class="titulo-seccion">
+            PUBLICACIONES ENCONTRADAS
+        </div>
+
+
+
+        <!-- PUBLICACIÓN 1 -->
+
+        <article
+            class="publicacion"
+            data-busqueda="cometa azul alex libreta noche especial cielo"
+        >
+
+            <div class="perfil">
+
+                <div class="avatar">
+                    ☄️
+                </div>
+
+                <div>
+
+                    <div class="nombre">
+                        Alex R.
+                    </div>
+
+                    <div class="usuario">
+                        @cometa_azul
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="contenido">
+
+                🌌 Hay noches que vale la pena esperar.
+
+                <br><br>
+
+                Mañana llevaré mi libreta al lugar donde
+                el cielo parece estar más cerca.
+
+                <br><br>
+
+                <span class="hashtag">
+                    #NocheEspecial
+                </span>
+
+            </div>
+
+            <div class="estado pendiente">
+                ⚠️ INFORMACIÓN ENCONTRADA • PENDIENTE DE VERIFICACIÓN
+            </div>
+
+        </article>
+
+
+
+        <!-- PUBLICACIÓN 2 -->
+
+        <article
+            class="publicacion"
+            data-busqueda="18:30 hora tarde cometa azul alex noche listo"
+        >
+
+            <div class="perfil">
+
+                <div class="avatar">
+                    ☄️
+                </div>
+
+                <div>
+
+                    <div class="nombre">
+                        Alex R.
+                    </div>
+
+                    <div class="usuario">
+                        @cometa_azul
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="contenido">
+
+                ⏰ Todo estará listo a las
+
+                <strong>
+                    18:30
+                </strong>
+
+                <br><br>
+
+                No debo llegar tarde.
+
+            </div>
+
+
+            <div class="estado pendiente">
+                ⚠️ POSIBLE HORA ENCONTRADA • FALTA VERIFICAR
+            </div>
+
+        </article>
+
+
+
+        <!-- PUBLICACIÓN 3 -->
+
+        <article
+            class="publicacion"
+            data-busqueda="luna norte mirador cometa cielo observacion"
+        >
+
+            <div class="perfil">
+
+                <div class="avatar">
+                    🌙
+                </div>
+
+                <div>
+
+                    <div class="nombre">
+                        Luna Norte
+                    </div>
+
+                    <div class="usuario">
+                        @luna_norte
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="contenido">
+
+                ⭐ Mi lugar favorito para observar el cielo
+                es el
+
+                <strong>
+                    Mirador del Cometa
+                </strong>.
+
+                <br><br>
+
+                La vista nocturna desde ahí es increíble.
+
+            </div>
+
+
+            <div class="estado pendiente">
+                ⚠️ POSIBLE UBICACIÓN • FALTA VERIFICAR
+            </div>
+
+        </article>
+
+
+
+        <!-- PUBLICACIÓN 4 -->
+
+        <article
+            class="publicacion"
+            data-busqueda="luna norte noche especial club cielo oscurecer"
+        >
+
+            <div class="perfil">
+
+                <div class="avatar">
+                    🌙
+                </div>
+
+                <div>
+
+                    <div class="nombre">
+                        Luna Norte
+                    </div>
+
+                    <div class="usuario">
+                        @luna_norte
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="contenido">
+
+                🌌 Preparándonos para una noche especial.
+
+                <br><br>
+
+                Nos vemos cuando el cielo comience a oscurecer.
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PUBLICACIÓN 5 -->
+
+        <article
+            class="publicacion"
+            data-busqueda="astro aleatorio parque central 17:00 evento"
+        >
+
+            <div class="perfil">
+
+                <div class="avatar">
+                    🌠
+                </div>
+
+                <div>
+
+                    <div class="nombre">
+                        Astro Aleatorio
+                    </div>
+
+                    <div class="usuario">
+                        @astro_aleatorio
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="contenido">
+
+                🌠 Creo que el evento será mañana en el
+
+                <strong>
+                    Parque Central
+                </strong>
+
+                a las
+
+                <strong>
+                    17:00
+                </strong>.
+
+                <br><br>
+
+                Me lo dijo un amigo.
+
+            </div>
+
+
+            <div class="estado alerta">
+                ⚠️ INFORMACIÓN SIN FUENTE CLARA
+            </div>
+
+        </article>
+
+
+
+        <!-- PUBLICACIÓN 6 -->
+
+        <article
+            class="publicacion"
+            data-busqueda="marta cielo aurora noche amanecer luz nuevo dia"
+        >
+
+            <div class="perfil">
+
+                <div class="avatar">
+                    🌅
+                </div>
+
+                <div>
+
+                    <div class="nombre">
+                        Marta C.
+                    </div>
+
+                    <div class="usuario">
+                        @marta_cielo
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="contenido">
+
+                Cuando termina la noche,
+                aparece una luz que anuncia
+                el comienzo de un nuevo día.
+
+                🌅
+
+            </div>
+
+        </article>
+
+
+
+        <!-- MENSAJE SIN RESULTADOS -->
+
+        <div
+            id="sinResultados"
+            class="sin-resultados"
+        >
+
+            No se encontraron publicaciones relacionadas
+            con esa búsqueda.
+
+            <br><br>
+
+            🔎 Intenta buscar otras palabras.
+
+        </div>
+
+
+
+        <!-- SIGUIENTE FUENTE -->
+
+        <a
+            href="aurora24.html"
+            class="boton-siguiente"
+        >
+
+            📰 CONSULTAR OTRA FUENTE
+
+        </a>
+
+
+        <div class="pie">
+
+            NEXO • FUENTE ABIERTA FICTICIA
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function buscar() {
+
+            const texto = document
+                .getElementById("busqueda")
+                .value
+                .toLowerCase()
+                .trim();
+
+
+            const publicaciones = document
+                .querySelectorAll(".publicacion");
+
+
+            const resultado = document
+                .getElementById("resultadoBusqueda");
+
+
+            const sinResultados = document
+                .getElementById("sinResultados");
+
+
+            let encontrados = 0;
+
+
+            publicaciones.forEach(function(publicacion) {
+
+                const contenido = publicacion
+                    .getAttribute("data-busqueda")
+                    .toLowerCase();
+
+
+                if (
+                    contenido.includes(texto)
+                    ||
+                    texto === ""
+                ) {
+
+                    publicacion.style.display = "block";
+
+                    encontrados++;
+
+                }
+
+                else {
+
+                    publicacion.style.display = "none";
+
+                }
+
+            });
+
+
+            if (texto === "") {
+
+                resultado.style.display = "none";
+
+                sinResultados.style.display = "none";
+
+                return;
+
+            }
+
+
+            if (encontrados > 0) {
+
+                resultado.style.display = "block";
+
+                sinResultados.style.display = "none";
+
+                resultado.innerHTML =
+                    "🔎 Se encontraron "
+                    +
+                    encontrados
+                    +
+                    " publicación(es) relacionadas con: "
+                    +
+                    "<strong>"
+                    +
+                    texto
+                    +
+                    "</strong>";
+
+            }
+
+            else {
+
+                resultado.style.display = "none";
+
+                sinResultados.style.display = "block";
+
+            }
+
+        }
+
+
+        document
+            .getElementById("busqueda")
+            .addEventListener(
+                "keypress",
+                function(event) {
+
+                    if (
+                        event.key === "Enter"
+                    ) {
+
+                        buscar();
+
+                    }
+
+                }
+            );
+
+    </script>
+
+
+</body>
+
+</html>
