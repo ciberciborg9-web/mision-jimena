@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Centro de Mando | Caso 001</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top, #1a2545 0%, #0b1020 45%, #050812 100%);
+            color: white;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .barra-superior {
+            border: 1px solid rgba(0, 255, 170, 0.25);
+            background: rgba(0, 0, 0, 0.25);
+            padding: 12px;
+            border-radius: 12px;
+            color: #00e5a0;
+            letter-spacing: 2px;
+            font-size: 14px;
+            margin-bottom: 35px;
+        }
+
+        .panel {
+            background: rgba(14, 23, 43, 0.88);
+            border: 1px solid rgba(0, 229, 160, 0.35);
+            border-radius: 20px;
+            padding: 50px 30px;
+            box-shadow: 0 0 40px rgba(0, 229, 160, 0.08);
+        }
+
+        .escudo {
+            font-size: 70px;
+            margin-bottom: 10px;
+        }
+
+        .estado {
+            color: #00e5a0;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin: 20px 0 10px;
+        }
+
+        h2 {
+            color: #b5c7ff;
+            font-size: 25px;
+            font-weight: normal;
+        }
+
+        .linea {
+            width: 100px;
+            height: 3px;
+            background: #00e5a0;
+            margin: 30px auto;
+        }
+
+        .datos {
+            max-width: 500px;
+            margin: 30px auto;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #00e5a0;
+        }
+
+        .datos p {
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .etiqueta {
+            color: #8da0c7;
+        }
+
+        .boton {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 17px 35px;
+            background: #00c987;
+            color: #071018;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .boton:hover {
+            transform: scale(1.05);
+            background: #00e5a0;
+        }
+
+        .pie {
+            margin-top: 35px;
+            color: #7786a5;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 30px;
+            }
+
+            .panel {
+                padding: 35px 20px;
+            }
+
+            .datos p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <div class="barra-superior">
+            SISTEMA DE ENTRENAMIENTO • NUEVA AURORA
+        </div>
+
+        <main class="panel">
+
+            <div class="escudo">🛡️</div>
+
+            <div class="estado">
+                ● ACCESO AUTORIZADO
+            </div>
+
+            <h1>BIENVENIDA, AGENTE JIMENA</h1>
+
+            <h2>CENTRO DE MANDO</h2>
+
+            <div class="linea"></div>
+
+            <div class="datos">
+                <p>
+                    <span class="etiqueta">AGENTE ASIGNADA:</span>
+                    <strong>JIMENA</strong>
+                </p>
+
+                <p>
+                    <span class="etiqueta">MISIÓN:</span>
+                    <strong>CASO 001</strong>
+                </p>
+
+                <p>
+                    <span class="etiqueta">OPERACIÓN:</span>
+                    <strong>EL ENIGMA DE AURORA</strong>
+                </p>
+
+                <p>
+                    <span class="etiqueta">ESTATUS:</span>
+                    <strong class="estado">ACTIVA</strong>
+                </p>
+            </div>
+
+            <p>
+                El Centro de Mando ha recibido información relacionada
+                con varias publicaciones públicas en Nueva Aurora.
+            </p>
+
+            <p>
+                Tu misión será buscar, analizar y verificar la información
+                disponible para descubrir qué está ocurriendo.
+            </p>
+
+            <a href="expediente.html" class="boton">
+                ABRIR EXPEDIENTE
+            </a>
+
+        </main>
+
+        <div class="pie">
+            CASO 001 • EL ENIGMA DE AURORA
+        </div>
+
+    </div>
+
+</body>
+</html>
