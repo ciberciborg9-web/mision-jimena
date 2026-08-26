@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Expediente | Caso 001</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top, #1a2545 0%, #0b1020 45%, #050812 100%);
+            color: white;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 950px;
+            margin: auto;
+            padding: 30px 0 50px;
+        }
+
+        .barra-superior {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(0, 255, 170, 0.25);
+            background: rgba(0, 0, 0, 0.25);
+            padding: 12px 18px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            color: #00e5a0;
+        }
+
+        .volver {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .volver:hover {
+            color: #00e5a0;
+        }
+
+        .panel-principal {
+            background: rgba(14, 23, 43, 0.90);
+            border: 1px solid rgba(0, 229, 160, 0.35);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 0 40px rgba(0, 229, 160, 0.08);
+        }
+
+        .clasificacion {
+            color: #00e5a0;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 38px;
+            margin: 15px 0 10px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: #b5c7ff;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .linea {
+            width: 100px;
+            height: 3px;
+            background: #00e5a0;
+            margin: 25px auto 35px;
+        }
+
+        .alerta {
+            background: rgba(255, 193, 7, 0.08);
+            border: 1px solid rgba(255, 193, 7, 0.35);
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .alerta h3 {
+            margin-top: 0;
+            color: #ffc107;
+        }
+
+        .seccion {
+            margin-top: 30px;
+        }
+
+        .seccion h2 {
+            color: #00e5a0;
+            font-size: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 12px;
+        }
+
+        .texto {
+            line-height: 1.7;
+            color: #d9e1f2;
+            font-size: 17px;
+        }
+
+        .pistas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .pista {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .pista span {
+            display: block;
+            color: #8da0c7;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .pista strong {
+            color: white;
+        }
+
+        .objetivos {
+            background: rgba(0, 229, 160, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 25px;
+        }
+
+        .objetivos ul {
+            padding-left: 20px;
+            line-height: 2;
+            color: #d9e1f2;
+        }
+
+        .botones {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .boton {
+            display: inline-block;
+            padding: 17px 30px;
+            background: #00c987;
+            color: #071018;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .boton:hover {
+            transform: scale(1.05);
+            background: #00e5a0;
+        }
+
+        .pie {
+            text-align: center;
+            color: #7786a5;
+            margin-top: 25px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+
+            .panel-principal {
+                padding: 25px 18px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .subtitulo {
+                font-size: 17px;
+            }
+
+            .texto {
+                font-size: 16px;
+            }
+
+            .barra-superior {
+                font-size: 12px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div class="contenedor">
+
+        <div class="barra-superior">
+
+            <a href="index.html" class="volver">
+                ← CENTRO DE MANDO
+            </a>
+
+            <strong>
+                EXPEDIENTE ACTIVO
+            </strong>
+
+        </div>
+
+
+        <main class="panel-principal">
+
+            <div class="clasificacion">
+                ● ACCESO RESTRINGIDO • NIVEL DE ENTRENAMIENTO
+            </div>
+
+
+            <h1>
+                CASO 001
+            </h1>
+
+            <div class="subtitulo">
+                EL ENIGMA DE AURORA
+            </div>
+
+
+            <div class="linea"></div>
+
+
+            <div class="alerta">
+
+                <h3>
+                    ⚠️ ALERTA DEL CENTRO DE MANDO
+                </h3>
+
+                <p class="texto">
+                    Se han detectado diversas publicaciones públicas
+                    relacionadas con un posible evento en la ciudad
+                    de Nueva Aurora.
+                </p>
+
+                <p class="texto">
+                    Parte de la información parece estar relacionada,
+                    pero también se han encontrado datos contradictorios.
+                </p>
+
+            </div>
+
+
+            <section class="seccion">
+
+                <h2>
+                    📁 INFORMACIÓN CONOCIDA
+                </h2>
+
+                <p class="texto">
+                    El sistema de monitoreo ha identificado varias palabras
+                    que aparecen repetidamente en diferentes publicaciones.
+                </p>
+
+
+                <div class="pistas">
+
+                    <div class="pista">
+                        <span>PALABRA DETECTADA</span>
+                        <strong>🌌 CIELO</strong>
+                    </div>
+
+                    <div class="pista">
+                        <span>PALABRA DETECTADA</span>
+                        <strong>☄️ COMETA</strong>
+                    </div>
+
+                    <div class="pista">
+                        <span>PALABRA DETECTADA</span>
+                        <strong>📖 LIBRETA</strong>
+                    </div>
+
+                    <div class="pista">
+                        <span>PALABRA DETECTADA</span>
+                        <strong>🌅 AURORA</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section class="seccion">
+
+                <h2>
+                    🎯 MISIÓN DE LA AGENTE JIMENA
+                </h2>
+
+                <div class="objetivos">
+
+                    <p class="texto">
+                        Utiliza las fuentes abiertas disponibles para descubrir:
+                    </p>
+
+                    <ul>
+                        <li>¿Qué usuario está relacionado con el caso?</li>
+
+                        <li>¿Dónde ocurrirá la actividad?</li>
+
+                        <li>¿A qué hora comenzará?</li>
+
+                        <li>¿Qué significa la palabra clave encontrada?</li>
+                    </ul>
+
+                </div>
+
+            </section>
+
+
+            <section class="seccion">
+
+                <h2>
+                    🛡️ INSTRUCCIONES
+                </h2>
+
+                <p class="texto">
+                    No toda la información disponible en internet es correcta.
+                    Una buena investigadora debe observar, analizar y verificar
+                    los datos antes de llegar a una conclusión.
+                </p>
+
+                <div class="objetivos">
+
+                    <ul>
+                        <li>🔎 Observa la información.</li>
+
+                        <li>🧠 Relaciona las pistas.</li>
+
+                        <li>📖 Busca en diferentes fuentes.</li>
+
+                        <li>🛡️ Verifica antes de concluir.</li>
+                    </ul>
+
+                </div>
+
+            </section>
+
+
+            <div class="botones">
+
+                <a href="nexo.html" class="boton">
+                    🔎 EXPLORAR FUENTES ABIERTAS
+                </a>
+
+            </div>
+
+        </main>
+
+
+        <div class="pie">
+            CENTRO DE MANDO • NUEVA AURORA • CASO 001
+        </div>
+
+    </div>
+
+</body>
+
+</html>
