@@ -1045,120 +1045,167 @@
 
     <!-- JAVASCRIPT -->
 
-    <script>
+   <script>
+
+const estadoRespuestas = {
+    usuario: false,
+    lugar: false,
+    hora: false,
+    aurora: false
+};
 
 
-        const respuestasCorrectas = {
+function responder(boton, pregunta, correcta, texto) {
 
-            usuario: false,
-
-            lugar: false,
-
-            hora: false,
-
-            aurora: false
-
-        };
+    const mensaje = document.getElementById(
+        "mensaje-" + pregunta
+    );
 
 
-        function responder(
-            boton,
-            pregunta,
-            correcta,
-            texto
-        ) {
+    const preguntaActual = boton.closest(
+        ".pregunta"
+    );
 
 
-            const mensaje = document
-                .getElementById(
-                    "mensaje-" + pregunta
-                );
+    const botones = preguntaActual.querySelectorAll(
+        ".opcion"
+    );
 
 
-            const botones = boton
-                .parentElement
-                .querySelectorAll(".opcion");
+    botones.forEach(function(opcion) {
+
+        opcion.classList.remove(
+            "correcta"
+        );
+
+        opcion.classList.remove(
+            "incorrecta"
+        );
+
+    });
 
 
-            botones.forEach(function(opcion) {
+    if (correcta) {
 
-                opcion.classList.remove(
-                    "correcta",
-                    "incorrecta"
-                );
-
-            });
+        boton.classList.add(
+            "correcta"
+        );
 
 
-            if (correcta) {
+        estadoRespuestas[pregunta] = true;
 
 
-                boton.classList.add(
-                    "correcta"
-                );
+        mensaje.className =
+            "mensaje correcto";
 
 
-                mensaje.className =
-                    "mensaje correcto";
+        mensaje.innerHTML =
+            "✅ " + texto;
 
 
-                mensaje.innerHTML =
-                    "✅ "
-                    +
-                    texto;
+    } else {
+
+        boton.classList.add(
+            "incorrecta"
+        );
 
 
-                respuestasCorrectas[pregunta] =
-                    true;
+        estadoRespuestas[pregunta] = false;
 
 
-            } else {
+        mensaje.className =
+            "mensaje error";
 
 
-                boton.classList.add(
-                    "incorrecta"
-                );
+        mensaje.innerHTML =
+            "💡 " + texto;
+
+    }
 
 
-                mensaje.className =
-                    "mensaje error";
+    mensaje.style.display = "block";
 
 
-                mensaje.innerHTML =
-                    "💡 "
-                    +
-                    texto;
+    actualizarProgreso();
+
+}
 
 
-            }
+function actualizarProgreso() {
+
+    let total = 0;
 
 
-            mensaje.style.display =
-                "block";
+    if (estadoRespuestas.usuario === true) {
+        total++;
+    }
 
 
-            actualizarProgreso();
+    if (estadoRespuestas.lugar === true) {
+        total++;
+    }
 
 
-        }
+    if (estadoRespuestas.hora === true) {
+        total++;
+    }
 
 
-        function actualizarProgreso() {
+    if (estadoRespuestas.aurora === true) {
+        total++;
+    }
 
 
-            let total = 0;
+    const contador = document.getElementById(
+        "contador"
+    );
 
 
-            Object.values(
-                respuestasCorrectas
-            ).forEach(function(valor) {
+    contador.textContent =
+        total + " / 4";
 
 
-                if (valor) {
-
-                    total++;
-
-                }
+    const porcentaje =
+        (total / 4) * 100;
 
 
-            });
+    const barra = document.getElementById(
+        "barra"
+    );
+
+
+    barra.style.width =
+        porcentaje + "%";
+
+
+    const botonFinal = document.getElementById(
+        "botonFinal"
+    );
+
+
+    if (total === 4) {
+
+        botonFinal.classList.add(
+            "desbloqueado"
+        );
+
+
+        botonFinal.innerHTML =
+            "🏆 ABRIR INFORME FINAL DE MISIÓN";
+
+
+    } else {
+
+        botonFinal.classList.remove(
+            "desbloqueado"
+        );
+
+
+        botonFinal.innerHTML =
+            "🔒 INFORME FINAL BLOQUEADO";
+
+    }
+
+}
+
+</script>
