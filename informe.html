@@ -483,7 +483,347 @@
             }
 
         }
+/* BOTÓN CREDENCIAL */
 
+.boton-credencial {
+
+    display: inline-block;
+
+    margin-bottom: 25px;
+
+    background: #17233d;
+
+    color: #ffffff;
+
+    border:
+        1px solid rgba(0, 229, 160, 0.40);
+
+    padding: 18px 30px;
+
+    border-radius: 12px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+.boton-credencial:hover {
+
+    background: #223455;
+
+    border-color: #00e5a0;
+
+    transform: translateY(-2px);
+
+}
+
+
+/* CREDENCIAL */
+
+.credencial {
+
+    display: none;
+
+    max-width: 520px;
+
+    margin: 0 auto 35px;
+
+    padding: 25px;
+
+    text-align: center;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            #17233d,
+            #0b1222
+        );
+
+    border:
+
+        2px solid #00c987;
+
+    border-radius: 22px;
+
+    box-shadow:
+
+        0 0 35px
+        rgba(0, 229, 160, 0.18);
+
+    animation:
+
+        aparecerCredencial
+        0.8s
+        ease;
+
+}
+
+
+@keyframes aparecerCredencial {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(0.95);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* PARTE SUPERIOR */
+
+.credencial-superior {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+}
+
+
+.credencial-escudo {
+
+    font-size: 42px;
+
+}
+
+
+.credencial-titulo {
+
+    font-weight: bold;
+
+    font-size: 19px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.credencial-subtitulo {
+
+    color: #00e5a0;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    margin-top: 5px;
+
+}
+
+
+.credencial-linea {
+
+    width: 100%;
+
+    height: 1px;
+
+    background:
+
+        rgba(255, 255, 255, 0.15);
+
+    margin: 22px 0;
+
+}
+
+
+/* AGENTE */
+
+.foto-agente {
+
+    width: 100px;
+
+    height: 100px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #00c987,
+            #3156a3
+        );
+
+    font-size: 50px;
+
+    border:
+
+        4px solid
+        rgba(255, 255, 255, 0.15);
+
+}
+
+
+.nombre-agente {
+
+    margin-top: 18px;
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+}
+
+
+.rango-agente {
+
+    color: #00e5a0;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin-top: 8px;
+
+}
+
+
+/* DATOS */
+
+.credencial-datos {
+
+    text-align: left;
+
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    border-top:
+
+        1px solid
+        rgba(255, 255, 255, 0.10);
+
+}
+
+
+.credencial-datos div {
+
+    margin-bottom: 15px;
+
+}
+
+
+.credencial-datos span {
+
+    display: block;
+
+    font-size: 10px;
+
+    color: #8f9db8;
+
+    letter-spacing: 1px;
+
+}
+
+
+.credencial-datos strong {
+
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 14px;
+
+}
+
+
+.credencial-pie {
+
+    margin-top: 20px;
+
+    color: #aab7d4;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+}
+
+
+.simulacion {
+
+    margin-top: 20px;
+
+    padding-top: 12px;
+
+    border-top:
+
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+    color: #687793;
+
+    font-size: 9px;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* MÓVILES */
+
+@media (max-width: 600px) {
+
+    .credencial {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .credencial-titulo {
+
+        font-size: 16px;
+
+    }
+
+
+    .nombre-agente {
+
+        font-size: 24px;
+
+    }
+
+}
     </style>
 
 </head>
@@ -832,7 +1172,133 @@
         </section>
 
 
+<!-- ABRIR CREDENCIAL -->
 
+<button
+    class="boton-credencial"
+    onclick="abrirCredencial()"
+>
+
+    🪪 VER MI CREDENCIAL DE AGENTE
+
+</button>
+
+
+<!-- CREDENCIAL -->
+
+<section
+    id="credencial"
+    class="credencial"
+>
+
+
+    <div class="credencial-superior">
+
+        <div class="credencial-escudo">
+
+            🛡️
+
+        </div>
+
+
+        <div>
+
+            <div class="credencial-titulo">
+
+                POLICÍA CIBERNÉTICA
+
+            </div>
+
+
+            <div class="credencial-subtitulo">
+
+                ENTRENAMIENTO SIMULADO
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="credencial-linea"></div>
+
+
+    <div class="foto-agente">
+
+        🕵️‍♀️
+
+    </div>
+
+
+    <div class="nombre-agente">
+
+        JIMENA
+
+    </div>
+
+
+    <div class="rango-agente">
+
+        AGENTE DE ENTRENAMIENTO
+
+    </div>
+
+
+    <div class="credencial-datos">
+
+
+        <div>
+
+            <span>UNIDAD</span>
+
+            <strong>
+                ANÁLISIS DE FUENTES ABIERTAS
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>ESTATUS</span>
+
+            <strong>
+                MISIÓN COMPLETADA
+            </strong>
+
+        </div>
+
+
+        <div>
+
+            <span>IDENTIFICACIÓN</span>
+
+            <strong>
+                AGENTE • 001
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="credencial-pie">
+
+        CASO 001 • NUEVA AURORA
+
+    </div>
+
+
+    <div class="simulacion">
+
+        CREDENCIAL FICTICIA • USO EXCLUSIVO EN ENTRENAMIENTO
+
+    </div>
+
+
+</section>
         <!-- REGRESAR -->
 
         <a
@@ -859,7 +1325,33 @@
 
     </main>
 
+<script>
 
+function abrirCredencial() {
+
+    const credencial = document.getElementById(
+        "credencial"
+    );
+
+
+    credencial.style.display = "block";
+
+
+    setTimeout(function() {
+
+        credencial.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "center"
+
+        });
+
+    }, 100);
+
+}
+
+</script>
 </body>
 
 </html>
