@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Informe Final | Caso 001</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #1b294a 0%,
+                    #0b1020 45%,
+                    #050812 100%
+                );
+
+            color: white;
+
+        }
+
+
+        /* BARRA SUPERIOR */
+
+        .barra-superior {
+
+            background: rgba(10, 16, 32, 0.96);
+
+            border-bottom:
+                1px solid rgba(0, 229, 160, 0.20);
+
+            padding: 15px;
+
+        }
+
+
+        .barra-contenido {
+
+            width: 92%;
+
+            max-width: 900px;
+
+            margin: auto;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+
+        .volver {
+
+            color: #aab7d4;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+        }
+
+
+        .volver:hover {
+
+            color: #00e5a0;
+
+        }
+
+
+        .estado {
+
+            color: #00e5a0;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        /* CONTENEDOR */
+
+        .contenedor {
+
+            width: 92%;
+
+            max-width: 850px;
+
+            margin: auto;
+
+            padding: 45px 0 70px;
+
+            text-align: center;
+
+        }
+
+
+        /* EMBLEMA */
+
+        .emblema {
+
+            font-size: 70px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .completada {
+
+            color: #00e5a0;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+
+        }
+
+
+        h1 {
+
+            font-size: 42px;
+
+            margin: 20px 0 10px;
+
+        }
+
+
+        .subtitulo {
+
+            color: #aab7d4;
+
+            font-size: 18px;
+
+        }
+
+
+        .linea {
+
+            width: 120px;
+
+            height: 3px;
+
+            background: #00e5a0;
+
+            margin: 28px auto 35px;
+
+        }
+
+
+        /* PANEL DE ÉXITO */
+
+        .panel-exito {
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(0, 229, 160, 0.14),
+                    rgba(0, 150, 255, 0.08)
+                );
+
+            border:
+                1px solid rgba(0, 229, 160, 0.35);
+
+            border-radius: 20px;
+
+            padding: 35px 25px;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .icono-exito {
+
+            font-size: 60px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .panel-exito h2 {
+
+            margin: 0 0 15px;
+
+            font-size: 28px;
+
+            color: #00e5a0;
+
+        }
+
+
+        .panel-exito p {
+
+            margin: 0;
+
+            color: #dce5f7;
+
+            line-height: 1.8;
+
+            font-size: 17px;
+
+        }
+
+
+        /* EXPEDIENTE */
+
+        .expediente {
+
+            background: #121b30;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.08);
+
+            border-radius: 18px;
+
+            padding: 25px;
+
+            margin-bottom: 30px;
+
+            text-align: left;
+
+        }
+
+
+        .expediente h2 {
+
+            margin-top: 0;
+
+            color: #00e5a0;
+
+            text-align: center;
+
+            font-size: 20px;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        .dato {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding: 16px 0;
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, 0.08);
+
+        }
+
+
+        .dato:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .etiqueta {
+
+            color: #8f9db8;
+
+        }
+
+
+        .resultado {
+
+            color: white;
+
+            font-weight: bold;
+
+            text-align: right;
+
+        }
+
+
+        .verificado {
+
+            color: #00e5a0;
+
+        }
+
+
+        /* MENSAJE */
+
+        .mensaje-final {
+
+            background:
+
+                rgba(0, 229, 160, 0.05);
+
+            border-left:
+
+                4px solid #00e5a0;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            margin-bottom: 30px;
+
+            text-align: left;
+
+        }
+
+
+        .mensaje-final h2 {
+
+            margin-top: 0;
+
+            color: white;
+
+        }
+
+
+        .mensaje-final p {
+
+            color: #d5def0;
+
+            line-height: 1.8;
+
+            font-size: 16px;
+
+        }
+
+
+        /* MEDALLA */
+
+        .medalla {
+
+            background: #18233b;
+
+            border:
+                1px solid rgba(255, 215, 0, 0.25);
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            margin-bottom: 35px;
+
+        }
+
+
+        .medalla-icono {
+
+            font-size: 55px;
+
+        }
+
+
+        .medalla h2 {
+
+            color: #ffd966;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .medalla p {
+
+            color: #dce5f7;
+
+            line-height: 1.7;
+
+            margin-bottom: 0;
+
+        }
+
+
+        /* BOTÓN */
+
+        .boton {
+
+            display: inline-block;
+
+            background: #00c987;
+
+            color: #071018;
+
+            padding: 18px 35px;
+
+            border-radius: 12px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            transition: 0.3s;
+
+        }
+
+
+        .boton:hover {
+
+            background: #00e5a0;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* PIE */
+
+        .pie {
+
+            margin-top: 45px;
+
+            color: #697793;
+
+            font-size: 13px;
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            h1 {
+
+                font-size: 32px;
+
+            }
+
+
+            .dato {
+
+                flex-direction: column;
+
+                gap: 7px;
+
+            }
+
+
+            .resultado {
+
+                text-align: left;
+
+            }
+
+
+            .barra-contenido {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 8px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- BARRA SUPERIOR -->
+
+    <div class="barra-superior">
+
+        <div class="barra-contenido">
+
+            <a
+                href="analisis.html"
+                class="volver"
+            >
+
+                ← CENTRO DE ANÁLISIS
+
+            </a>
+
+
+            <div class="estado">
+
+                ● MISIÓN COMPLETADA
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <main class="contenedor">
+
+
+        <!-- ENCABEZADO -->
+
+        <div class="emblema">
+
+            🛡️
+
+        </div>
+
+
+        <div class="completada">
+
+            CASO CERRADO
+
+        </div>
+
+
+        <h1>
+
+            MISIÓN COMPLETADA, JIMENA
+
+        </h1>
+
+
+        <div class="subtitulo">
+
+            Caso 001: El Enigma de Aurora
+
+        </div>
+
+
+        <div class="linea"></div>
+
+
+
+        <!-- PANEL DE ÉXITO -->
+
+        <section class="panel-exito">
+
+
+            <div class="icono-exito">
+
+                🏆
+
+            </div>
+
+
+            <h2>
+
+                ¡EXCELENTE TRABAJO, AGENTE!
+
+            </h2>
+
+
+            <p>
+
+                Has logrado analizar diferentes fuentes de
+                información, identificar pistas relevantes,
+                descartar datos no relacionados y verificar
+                la información antes de llegar a una conclusión.
+
+                <br><br>
+
+                Tu primera misión de entrenamiento ha sido
+                completada correctamente.
+
+            </p>
+
+
+        </section>
+
+
+
+        <!-- INFORME DEL CASO -->
+
+        <section class="expediente">
+
+
+            <h2>
+
+                📁 RESULTADO DE LA INVESTIGACIÓN
+
+            </h2>
+
+
+            <div class="dato">
+
+                <span class="etiqueta">
+
+                    CASO:
+
+                </span>
+
+
+                <span class="resultado">
+
+                    El Enigma de Aurora
+
+                </span>
+
+            </div>
+
+
+            <div class="dato">
+
+                <span class="etiqueta">
+
+                    USUARIO RELACIONADO:
+
+                </span>
+
+
+                <span class="resultado verificado">
+
+                    ✓ @cometa_azul
+
+                </span>
+
+            </div>
+
+
+            <div class="dato">
+
+                <span class="etiqueta">
+
+                    UBICACIÓN:
+
+                </span>
+
+
+                <span class="resultado verificado">
+
+                    ✓ Mirador del Cometa
+
+                </span>
+
+            </div>
+
+
+            <div class="dato">
+
+                <span class="etiqueta">
+
+                    HORA IDENTIFICADA:
+
+                </span>
+
+
+                <span class="resultado verificado">
+
+                    ✓ 18:30 horas
+
+                </span>
+
+            </div>
+
+
+            <div class="dato">
+
+                <span class="etiqueta">
+
+                    SIGNIFICADO DE LA PISTA:
+
+                </span>
+
+
+                <span class="resultado verificado">
+
+                    ✓ La primera luz que anuncia
+                    un nuevo día
+
+                </span>
+
+            </div>
+
+
+            <div class="dato">
+
+                <span class="etiqueta">
+
+                    ESTATUS:
+
+                </span>
+
+
+                <span class="resultado verificado">
+
+                    ✓ INFORMACIÓN VERIFICADA
+
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- MENSAJE PERSONAL -->
+
+        <section class="mensaje-final">
+
+
+            <h2>
+
+                📡 MENSAJE DEL CENTRO DE MANDO
+
+            </h2>
+
+
+            <p>
+
+                Agente Jimena:
+
+                <br><br>
+
+                Una buena investigadora no necesita conocer
+                todas las respuestas desde el principio.
+
+                Lo importante es saber observar, buscar,
+                relacionar la información y verificar antes
+                de llegar a una conclusión.
+
+                <br><br>
+
+                Hoy realizaste precisamente eso.
+
+                <br><br>
+
+                Tu capacidad para seguir las pistas,
+                identificar información importante y continuar
+                buscando demuestra que tienes algo fundamental:
+
+                <strong>
+
+                    curiosidad.
+
+                </strong>
+
+                <br><br>
+
+                Y toda gran investigadora comienza con
+                una pregunta:
+
+                <strong>
+
+                    “¿Qué puedo descubrir?”
+
+                </strong>
+
+            </p>
+
+
+        </section>
+
+
+
+        <!-- MEDALLA -->
+
+        <section class="medalla">
+
+
+            <div class="medalla-icono">
+
+                🥇
+
+            </div>
+
+
+            <h2>
+
+                DISTINCIÓN ESPECIAL
+
+            </h2>
+
+
+            <p>
+
+                Se otorga a
+
+                <br><br>
+
+                <strong>
+
+                    JIMENA
+
+                </strong>
+
+                <br><br>
+
+                por completar satisfactoriamente el
+
+                <strong>
+
+                    CASO 001:
+                    EL ENIGMA DE AURORA
+
+                </strong>
+
+                <br><br>
+
+                Primera misión de entrenamiento
+                en investigación y análisis de fuentes abiertas.
+
+            </p>
+
+
+        </section>
+
+
+
+        <!-- REGRESAR -->
+
+        <a
+            href="index.html"
+            class="boton"
+        >
+
+            🏠 REGRESAR AL CENTRO DE MANDO
+
+        </a>
+
+
+
+        <div class="pie">
+
+            CENTRO DE MANDO • NUEVA AURORA • CASO 001
+
+            <br><br>
+
+            🛡️ INVESTIGAR • ANALIZAR • VERIFICAR 🛡️
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>
